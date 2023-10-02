@@ -73,7 +73,7 @@ export class UserService {
   public searchByemail(key:any): Observable<any>{
     let params = new HttpParams()
     .set('email',key)
-    return this.httpClient.get(this.url+ `/v1/users/searchFullText`,{params:params,headers:new HttpHeaders({
+    return this.httpClient.get(this.url+ `/user/v1/users/searchFullText`,{params:params,headers:new HttpHeaders({
       'Content-Type':'application/json'
     })}
     )

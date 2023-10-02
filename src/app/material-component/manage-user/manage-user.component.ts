@@ -52,33 +52,21 @@ export class ManageUserComponent implements OnInit {
   }
 
 
-  // searchCooptCriteriaBuilderFirstName2(firstName) {
-
-  //   this.cooptationService.searchByName(firstName).subscribe((response) => {
-
-  //     this.cooptations = cooptations._embedded.cooptationDtoList.filter(element => !element.isArchived);
-  //     console.log(cooptations);
-
-  //   });
-
-  // }
-
-  searchByNameCriteria(){
-    this.userService.searchByName(this.name).subscribe((response:any)=>{
-      this.name=response;
+  searchByemailCriteria(email:any){
+    this.userService.searchByemail(email).subscribe((response:any)=>{
+      this.dataSource = response.content;
+      console.log(this.dataSource);
+      console.log(response);
+      
     });
   }
 
-  searchByemailCriteria(){
-    this.userService.searchByName(this.email).subscribe((response:any)=>{
-      this.name=response;
-    });
-  }
-
-  searchBycontactNumber(){
+  searchBycontactNumber(contactNumber:any){
  
-    this.userService.searchByName(this.contactNumber).subscribe((response:any)=>{
-      this.name=response;
+    this.userService.searchBycontactNumber(contactNumber).subscribe((response:any)=>{
+      this.dataSource = response.content;
+      console.log(this.dataSource);
+      console.log(response);
     });
   }
 

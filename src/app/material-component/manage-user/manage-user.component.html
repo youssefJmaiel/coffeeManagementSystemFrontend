@@ -9,14 +9,31 @@
 <hr>
 <mat-card>
     <mat-form-field appearance="standard">
-        <mat-label>Filter</mat-label>
+
+
+       
+          <mat-label>Select an option</mat-label>
+  <mat-select [(value)]="isSelected">
+    <mat-option>None</mat-option>
+    <mat-option value="name">firstname</mat-option>
+    <mat-option value="email">email</mat-option>
+    <mat-option value="contactNumber">contact Number</mat-option>
+  </mat-select>
+
         
-        <input matInput   (ngModelChange)="searchCooptCriteriaBuilderFirstName($event)" #firstName="ngModel" ngModel >
-
+ 
+      
     </mat-form-field>
+    <mat-label>Search</mat-label>
 
+<input matInput placeholder="firstName" *ngIf="isSelected == 'name'" (ngModelChange)="searchCooptCriteriaBuilderFirstName($event)" #firstName="ngModel" ngModel >
+<input matInput placeholder="email"  *ngIf="isSelected == 'email'"  (ngModelChange)="searchByemailCriteria($event)" #email="ngModel" ngModel >
+<input matInput placeholder="contactNumber" *ngIf="isSelected == 'contactNumber'"  (ngModelChange)="searchBycontactNumber($event)" #contactNumber="ngModel" ngModel >
   
 </mat-card>
+
+
+
 
 <hr>
 <div class="responsive_table">
