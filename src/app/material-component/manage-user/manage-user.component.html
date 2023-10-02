@@ -10,8 +10,12 @@
 <mat-card>
     <mat-form-field appearance="standard">
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" #input>
+        
+        <input matInput   (ngModelChange)="searchCooptCriteriaBuilderFirstName($event)" #firstName="ngModel" ngModel >
+
     </mat-form-field>
+
+  
 </mat-card>
 
 <hr>

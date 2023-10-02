@@ -19,6 +19,12 @@ export class ManageUserComponent implements OnInit {
   dispalyedColumns:string[]= ['name','email','contactNumber','status'];
   dataSource:any;
   responseMessage:any;
+  name:string | undefined;
+  email:any;
+  contactNumber:any;
+  isSelected:any;
+  firstName:string='';
+ 
   constructor(private userService:UserService,
     private ngxService:NgxUiLoaderService,
     private snackBarservice:SnackbarService,
@@ -28,7 +34,54 @@ export class ManageUserComponent implements OnInit {
   ngOnInit(): void {
     this.ngxService.start();
     this.tableData();
+  
+    
+  
+
   }
+
+  searchCooptCriteriaBuilderFirstName(firstName:any) {
+
+    this.userService.searchByName(firstName).subscribe((response) => {
+      // this.dataSource = response;
+      this.dataSource = response.content;
+      console.log(this.dataSource);
+      console.log(response);
+    });
+
+  }
+
+
+  // searchCooptCriteriaBuilderFirstName2(firstName) {
+
+  //   this.cooptationService.searchByName(firstName).subscribe((response) => {
+
+  //     this.cooptations = cooptations._embedded.cooptationDtoList.filter(element => !element.isArchived);
+  //     console.log(cooptations);
+
+  //   });
+
+  // }
+
+  searchByNameCriteria(){
+    this.userService.searchByName(this.name).subscribe((response:any)=>{
+      this.name=response;
+    });
+  }
+
+  searchByemailCriteria(){
+    this.userService.searchByName(this.email).subscribe((response:any)=>{
+      this.name=response;
+    });
+  }
+
+  searchBycontactNumber(){
+ 
+    this.userService.searchByName(this.contactNumber).subscribe((response:any)=>{
+      this.name=response;
+    });
+  }
+
 
   tableData(){
     this.userService.getUsers().subscribe((response:any)=>{

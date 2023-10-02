@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -64,6 +64,29 @@ export class UserService {
     return this.httpClient.post(this.url + `/user/deleteUser/${id}`,httpOptions);
   }
 
+  public searchByName(key:any): Observable<any>{
+    let params = new HttpParams()
+    .set('name',key)
+    return this.httpClient.get(this.url+ `/user/v1/users/searchFullText?name=`+key,httpOptions);
+  }
+
+  public searchByemail(key:any): Observable<any>{
+    let params = new HttpParams()
+    .set('email',key)
+    return this.httpClient.get(this.url+ `/v1/users/searchFullText`,{params:params,headers:new HttpHeaders({
+      'Content-Type':'application/json'
+    })}
+    )
+  }
+
+  public searchBycontactNumber(key:any): Observable<any>{
+    let params = new HttpParams()
+    .set('contactNumber',key)
+    return this.httpClient.get(this.url+ `/user/v1/users/searchFullText`,{params:params,headers:new HttpHeaders({
+      'Content-Type':'application/json'
+    })}
+    )
+  }
 
 }
 
